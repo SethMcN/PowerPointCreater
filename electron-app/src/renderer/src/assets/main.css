@@ -1,0 +1,41 @@
+
+
+.Canvas-SlideBar{
+  display: flex;
+  height: 90vh;
+  margin-top: 5px;
+
+}
+
+.Tool-Bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+}
+
+.Slide-Bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+  background-color: #5a5555;
+  color: white;
+  border-radius: 5px;
+}
+
+.Main-Canvas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 80%; 
+  background-color: #f0f0f0;
+}

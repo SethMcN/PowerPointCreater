@@ -1,12 +1,32 @@
-
-
 .Canvas-SlideBar{
   display: flex;
   height: 90vh;
   margin-top: 5px;
-
 }
 
+#canvas {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 1px solid #333;
+  width: 3vw;
+}
+
+.Settings-panel{
+  padding: 100px;
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+
+
+
+  border-radius: 5px;
+}
+
+/* Tool Bar */
 .Tool-Bar {
   display: flex;
   flex-direction: row;
@@ -18,6 +38,19 @@
   border-radius: 5px;
 }
 
+.Tool-Bar-Add-Shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: #5a5555;
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+/* side bar */
 .Slide-Bar {
   display: flex;
   flex-direction: column;
@@ -30,7 +63,7 @@
   border-radius: 5px;
 }
 
-.Main-Canvas {
+.Container-Canvas{
   display: flex;
   flex-direction: column;
   justify-content: center;

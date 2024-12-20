@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rect, Circle, Triangle, Polygon, Line } from 'fabric'
+import { Rect, Circle, Triangle, Polygon, Line, Textbox } from 'fabric'
 import { IconButton } from 'blocksin-system'
 import {
   SquareIcon,
@@ -18,8 +18,8 @@ export default function ToolBar({ canvas }) {
         left: 100,
         top: 100,
         fill: 'red',
-        width: 20,
-        height: 20
+        width: 100,
+        height: 100
       })
       canvas.add(rect)
     }
@@ -78,6 +78,18 @@ export default function ToolBar({ canvas }) {
         stroke: 'black'
       })
       canvas.add(line)
+    }
+  }
+
+  const addText = () => {
+    if (canvas) {
+      const text = new Textbox('Hello World', {
+        left: 100,
+        top: 100,
+        fill: 'black',
+        fontSize: 20
+      })
+      canvas.add(text)
     }
   }
 
@@ -156,7 +168,7 @@ export default function ToolBar({ canvas }) {
 
           <IconButton
             className="Tool-Bar-Add-Shape"
-            onClick={addStar}
+            onClick={addText}
             variant="ghost"
             size="medium"
           >

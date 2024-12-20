@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Canvas } from 'fabric'
 import { handleObjectMoving, clearGuidelines } from './snappingHelpers'
 
-export default function MainCanvas({ canvas, setCanvas }) {
+export default function MainCanvas({ setCanvas }) {
   const canvasRef = useRef(null)
   const [guidelines, setGuidelines] = useState([])
 
@@ -24,16 +24,15 @@ export default function MainCanvas({ canvas, setCanvas }) {
         handleObjectMoving(initCanvas, event.target, guidelines, setGuidelines)
       })
 
-      initCanvas.on('object:modified'),
-        () => {
-          clearGuidelines(initCanvas, guidelines, setGuidelines)
-        }
+      initCanvas.on('object:modified', () => {
+        clearGuidelines(initCanvas, guidelines, setGuidelines)
+      })
 
       return () => {
         initCanvas.dispose()
       }
     }
-  }, [setCanvas])
+  }, [setCanvas, guidelines])
 
   return (
     <div className="Container-Canvas">

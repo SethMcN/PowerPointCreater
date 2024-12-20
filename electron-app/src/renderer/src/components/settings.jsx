@@ -58,20 +58,87 @@ export default function Settings({ canvas }) {
     setColor('')
   }
 
-  const handleWidthChange = (event) => {}
-  const handleHeightChange = (event) => {}
-  const handleDiameterChange = (event) => {}
-  const handleColorChange = (event) => {}
+  const handleWidthChange = (event) => {
+    const value = event.target.value.replace(/,/g, '')
+    const intValue = parseInt(value, 10)
+
+    setWidth(intValue)
+
+    if (selectedObject && selectedObject.type === 'rect' && intValue > 0) {
+      selectedObject.set({ width: intValue / selectedObject.scaleX })
+      canvas.renderAll()
+    }
+  }
+  const handleHeightChange = (event) => {
+    const value = event.target.value.replace(/,/g, '')
+    const intValue = parseInt(value, 10)
+
+    setHeight(intValue)
+
+    if (selectedObject && selectedObject.type === 'rect' && intValue > 0) {
+      selectedObject.set({ height: intValue / selectedObject.scaleY })
+      canvas.renderAll()
+    }
+  }
+  const handleDiameterChange = (event) => {
+    const value = event.target.value.replace(/,/g, '')
+    const intValue = parseInt(value, 10)
+
+    setDiameter(intValue)
+
+    if (selectedObject && selectedObject.type === 'circle' && intValue > 0) {
+      selectedObject.set({ radius: intValue / 2 / selectedObject.scaleX })
+      canvas.renderAll()
+    }
+  }
+  const handleColorChange = (event) => {
+    const value = event.target.value
+
+    setColor(value)
+
+    if (selectedObject) {
+      selectedObject.set({ fill: value })
+      canvas.renderAll()
+    }
+  }
 
   return (
-    <div className="Settings-panel">
+    <div id="Settings-panel">
       {selectedObject && selectedObject.type === 'rect' && (
         <>
-          <Input fluid label="Width" value={width} />
-          <Input fluid label="Height" value={height} />
-          <Input fluid label="Color" value={color} />
+          <Input label="Width" value={width} onChange={handleWidthChange} type="number" />
+          <Input label="Height" value={height} onChange={handleHeightChange} type="number" />
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
         </>
       )}
+      {selectedObject && selectedObject.type === 'circle' && (
+        <>
+          <Input label="Diameter" value={diameter} onChange={handleDiameterChange} type="number" />
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
+        </>
+      )}
+
+      {selectedObject && selectedObject.type === 'triangle' && (
+        <>
+          <Input label="Width" value={width} onChange={handleWidthChange} type="number" />
+          <Input label="Height" value={height} onChange={handleHeightChange} type="number" />
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
+        </>
+      )}
+
+      {selectedObject && selectedObject.type === 'polygon' && (
+        <>
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
+        </>
+      )}
+
+      {selectedObject && selectedObject.type === 'line' && (
+        <>
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
+        </>
+      )}
+
+      {!selectedObject && <p>Select an object to edit its properties</p>}
     </div>
   )
 }

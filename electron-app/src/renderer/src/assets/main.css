@@ -12,43 +12,78 @@
   width: 3vw;
 }
 
-.Settings-panel{
-  padding: 100px;
-  background-color: aquamarine;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
-
-
-
-  border-radius: 5px;
-}
-
 /* Tool Bar */
 .Tool-Bar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 150px;
   background-color: #333;
   color: white;
   border-radius: 5px;
+  padding: 10px;
 }
 
-.Tool-Bar-Add-Shape {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  background-color: #5a5555;
-  color: white;
-  border-radius: 5px;
-  margin: 5px;
+.Tool-Bar #Settings-panel {
+  display: inline;
+  margin-left: auto;
+  align-items: top;
 }
+
+.Tool-Bar-Dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.Tool-Bar-Dropdown-Button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.Tool-Bar-Dropdown-Button:hover {
+  background-color: #555;
+}
+
+.Tool-Bar-Dropdown-Content {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+.Tool-Bar-Dropdown-Content .Tool-Bar-Add-Shape {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.Tool-Bar-Dropdown-Content .Tool-Bar-Add-Shape:hover {
+  background-color: #f1f1f1;
+}
+
+.Tool-Bar-Dropdown:hover .Tool-Bar-Dropdown-Content {
+  display: flex;
+  flex-direction: column;
+}
+
+.Tool-Bar-Dropdown:hover .Tool-Bar-Dropdown-Button {
+  background-color: #555;
+}
+
+
 
 /* side bar */
 .Slide-Bar {

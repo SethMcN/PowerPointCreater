@@ -87,7 +87,8 @@ export default function ToolBar({ canvas }) {
         left: 100,
         top: 100,
         fill: 'black',
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: 'Arial'
       })
       canvas.add(text)
     }

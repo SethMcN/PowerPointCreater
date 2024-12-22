@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from 'blocksin-system'
+import { FontSizeIcon } from 'sebikostudio-icons'
 
 export default function Settings({ canvas }) {
   const [selectedObject, setSelectedObject] = useState(null)
@@ -7,6 +8,7 @@ export default function Settings({ canvas }) {
   const [height, setHeight] = useState('')
   const [diameter, setDiameter] = useState('')
   const [color, setColor] = useState('')
+  const [fontSize, setFontSize] = useState('')
 
   useEffect(() => {
     if (canvas) {
@@ -48,6 +50,11 @@ export default function Settings({ canvas }) {
       setColor(object.fill)
       setWidth('')
       setHeight('')
+    } else if (object.type === 'triangle') {
+      pass
+    } else if (object.type === 'textbox') {
+      setFontSize(object.fontSize)
+      setColor(object.fill)
     }
   }
 
@@ -101,6 +108,17 @@ export default function Settings({ canvas }) {
       canvas.renderAll()
     }
   }
+  const handleFontSizeChange = (event) => {
+    const value = event.target.value.replace(/,/g, '')
+    const intValue = parseInt(value, 10)
+
+    setFontSize(intValue)
+
+    if (selectedObject && selectedObject.type === 'textbox' && intValue > 0) {
+      selectedObject.set({ fontSize: intValue })
+      canvas.renderAll()
+    }
+  }
 
   return (
     <div id="Settings-panel">
@@ -138,6 +156,12 @@ export default function Settings({ canvas }) {
         </>
       )}
 
+      {selectedObject && selectedObject.type === 'textbox' && (
+        <>
+          <Input label="Font size" value={fontSize} onChange={handleFontSizeChange} type="number" />
+          <Input label="Color" value={color} onChange={handleColorChange} type="color" />
+        </>
+      )}
       {!selectedObject && <p>Select an object to edit its properties</p>}
     </div>
   )

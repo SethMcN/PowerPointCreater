@@ -25,9 +25,13 @@
 }
 
 .Tool-Bar #Settings-panel {
-  display: inline;
-  margin-left: auto;
-  align-items: top;
+
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px 0;
 }
 
 .Tool-Bar-Dropdown {
@@ -82,14 +86,35 @@
 .Tool-Bar-Dropdown:hover .Tool-Bar-Dropdown-Button {
   background-color: #555;
 }
+/* Settings Panel */
 
+.TextBox-Settings{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
 
+.TextBox-Buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
 
 /* side bar */
 .Slide-Bar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   align-items: center;
   height: 100%;
   width: 20%;
@@ -100,7 +125,6 @@
 
 .Container-Canvas{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;

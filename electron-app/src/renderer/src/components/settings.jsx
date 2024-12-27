@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from 'blocksin-system'
-import { FontSizeIcon } from 'sebikostudio-icons'
+import { FontSizeIcon, TrashIcon } from 'sebikostudio-icons'
 
 export default function Settings({ canvas }) {
   const [selectedObject, setSelectedObject] = useState(null)
@@ -108,6 +108,14 @@ export default function Settings({ canvas }) {
       canvas.renderAll()
     }
   }
+
+  const handleDelete = () => {
+    if (selectedObject) {
+      canvas.remove(selectedObject)
+      canvas.discardActiveObject()
+    }
+  }
+
   const handleFontSizeChange = (event) => {
     const value = event.target.value.replace(/,/g, '')
     const intValue = parseInt(value, 10)
@@ -120,8 +128,28 @@ export default function Settings({ canvas }) {
     }
   }
 
+  const handleTextAlignChange = (event) => {
+    const value = event.target.value
+
+    if (selectedObject && selectedObject.type === 'textbox') {
+      selectedObject.set({ textAlign: value })
+      canvas.renderAll()
+    }
+  }
+
+  const handleTextUnderline = () => {
+    if (selectedObject && selectedObject.type === 'textbox') {
+      selectedObject.set({ underline: !selectedObject.underline })
+      canvas.renderAll()
+    }
+  }
+
   return (
     <div id="Settings-panel">
+      <h2>Settings</h2>
+      <button onClick={handleDelete}>
+        <TrashIcon />
+      </button>
       {selectedObject && selectedObject.type === 'rect' && (
         <>
           <Input label="Width" value={width} onChange={handleWidthChange} type="number" />
@@ -157,10 +185,18 @@ export default function Settings({ canvas }) {
       )}
 
       {selectedObject && selectedObject.type === 'textbox' && (
-        <>
+        <div className="TextBox-Settings">
+          <div className="TextBox-Buttons">
+            <select className="Text-Center" onChange={handleTextAlignChange}>
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+            </select>
+            <button onClick={handleTextUnderline}>U</button>
+          </div>
           <Input label="Font size" value={fontSize} onChange={handleFontSizeChange} type="number" />
           <Input label="Color" value={color} onChange={handleColorChange} type="color" />
-        </>
+        </div>
       )}
       {!selectedObject && <p>Select an object to edit its properties</p>}
     </div>

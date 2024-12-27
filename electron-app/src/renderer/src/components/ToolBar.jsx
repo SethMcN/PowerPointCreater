@@ -10,6 +10,7 @@ import {
   StarFilledIcon
 } from 'sebikostudio-icons'
 import Settings from './settings'
+import Delate from './Delate'
 
 export default function ToolBar({ canvas }) {
   const addRectangle = () => {
@@ -179,6 +180,7 @@ export default function ToolBar({ canvas }) {
       </div>
 
       <Settings canvas={canvas} />
+      <Delate canvas={canvas} />
     </div>
   )
 }

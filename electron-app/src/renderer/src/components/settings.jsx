@@ -109,13 +109,6 @@ export default function Settings({ canvas }) {
     }
   }
 
-  const handleDelete = () => {
-    if (selectedObject) {
-      canvas.remove(selectedObject)
-      canvas.discardActiveObject()
-    }
-  }
-
   const handleFontSizeChange = (event) => {
     const value = event.target.value.replace(/,/g, '')
     const intValue = parseInt(value, 10)
@@ -146,10 +139,6 @@ export default function Settings({ canvas }) {
 
   return (
     <div id="Settings-panel">
-      <h2>Settings</h2>
-      <button onClick={handleDelete}>
-        <TrashIcon />
-      </button>
       {selectedObject && selectedObject.type === 'rect' && (
         <>
           <Input label="Width" value={width} onChange={handleWidthChange} type="number" />
